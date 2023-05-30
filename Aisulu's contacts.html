@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact Me</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css Aisulu's contacts.css">
+    <style>
+      #success-message {
+        display: none;
+        color: green;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Contact Me</h1>
+      <form action="action_page.php">
+        <div class="form-group">
+          <label for="fname">Name:</label>
+          <input type="text" class="form-control" id="fname" name="firstname" placeholder="Your name..">
+        </div>
+        <div class="form-group">
+          <label for="lname">Email:</label>
+          <input type="text" class="form-control" id="lname" name="lastname" placeholder="Your email..">
+        </div>
+        <div class="form-group">
+          <label for="subject">Message:</label>
+          <textarea class="form-control" id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <div id="success-message">Form submitted successfully!</div>
+      <h2>Other Contact Details</h2>
+      <ul>
+        <li>Email: shukitova13@gmail.com</li>
+        <li>Phone: 87782671846</li>
+      </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var form = document.querySelector('form');
+        var successMessage = document.getElementById('success-message');
+
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          if (validateForm()) {
+            var firstNameInput = document.getElementById('fname');
+            var lastNameInput = document.getElementById('lname');
+            var subjectInput = document.getElementById('subject');
+
+            var formData = {
+              firstName: firstNameInput.value,
+              lastName: lastNameInput.value,
+              subject: subjectInput.value
+            };
+
+            successMessage.style.display = 'block';
+
+            form.reset();
+          }
+        });
+
+        function hideSuccessMessage() {
+          successMessage.style.display = 'none';
+        }
+
+        function validateForm() {
+          var firstNameInput = document.getElementById('fname');
+          var lastNameInput = document.getElementById('lname');
+          var subjectInput = document.getElementById('subject');
+
+          if (firstNameInput.value === '' || lastNameInput.value === '' || subjectInput.value === '') {
+            alert('Please fill in all fields.');
+            return false;
+          }
+
+          return true;
+        }
+
+        successMessage.addEventListener('animationend', hideSuccessMessage);
+      });
+    </script>
+  </body>
+</html>
